@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.apache.coyote.http11.Constants.a;
+
 @Service
 public class UserLocationService {
     @Autowired
@@ -26,9 +28,19 @@ public class UserLocationService {
     }
 
     public void updateUserLocation(UserLocationDTO userLocationDTO) {
-        Optional<UserLocation> optionalUserLocation = userLocationDTO.findByName(userLocationDTO.getName()).get();
-//
-//
-//    }
-//    public void setUserLocationRepositor(UserLocationDTO userLocationDTO)
-}
+        try {
+            UserLocation userLocation = userLocationRepository.findByName(userLocationDTO.getName());
+            userLocation.setLongitude(userLocation.getLongitude());
+            userLocation.setLatitude(userLocationDTO.getLatitude());
+
+            userLocationRepository.save(userLocation);
+        }
+        catch (Exception e){
+            throw new RuntimeException("User not Found");
+        }
+
+
+    }
+
+    }
+

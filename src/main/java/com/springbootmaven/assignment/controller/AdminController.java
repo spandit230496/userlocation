@@ -21,6 +21,11 @@ public class AdminController {
      return userLocationDTO;
     }
 
-//    @PostMapping("/update")
-//    public
+ @PostMapping("/update")
+    public String updateUser(UserLocationDTO userLocationDTO){
+        userLocationService.updateUserLocation(userLocationDTO);
+
+        return "User Location Updated ";
+ }
+
 }

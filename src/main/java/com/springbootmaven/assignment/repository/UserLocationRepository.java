@@ -11,7 +11,5 @@ import java.util.Optional;
 @EnableJpaRepositories
 @Repository
 public interface UserLocationRepository extends JpaRepository<UserLocation,Integer> {
-UserLocation findByName(String name);
-
-List<UserLocation> findNearestFive();
+    UserLocation findByName(String name);
 }
